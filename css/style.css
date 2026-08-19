@@ -1,0 +1,393 @@
+/* ==================================================
+   CFE Tools Hub
+   Grayscale-first design with restrained red accents
+================================================== */
+
+:root {
+    --cfe-red: #c9202f;
+
+    --black: #111111;
+    --charcoal: #1c1c1c;
+    --dark-gray: #333333;
+    --mid-gray: #777777;
+    --light-gray: #d9d9d9;
+    --lighter-gray: #e9e9e9;
+    --off-white: #f6f6f6;
+    --white: #ffffff;
+
+    --page-width: 1200px;
+}
+
+
+/* ==================================================
+   Reset / Base
+================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        "Montserrat",
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--off-white);
+    color: var(--black);
+}
+
+.container {
+    width: min(90%, var(--page-width));
+    margin: 0 auto;
+}
+
+
+/* ==================================================
+   Header
+================================================== */
+
+.site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.header-content {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.brand-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 74px;
+    height: 42px;
+
+    padding: 0 12px;
+
+    background: var(--charcoal);
+    color: var(--white);
+
+    border-radius: 3px;
+
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.cfe-logo {
+    display: block;
+    width: 90px;
+    height: auto;
+}
+
+.brand-divider {
+    width: 1px;
+    height: 28px;
+
+    background: var(--light-gray);
+}
+
+.site-name {
+    color: var(--mid-gray);
+
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+}
+
+
+/* ==================================================
+   Intro
+================================================== */
+
+.intro {
+    padding: 72px 0 34px;
+}
+
+.eyebrow {
+    margin: 0 0 12px;
+
+    color: var(--mid-gray);
+
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+}
+
+.intro h1 {
+    margin: 0 0 10px;
+
+    font-size: clamp(2.1rem, 4vw, 3.1rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+}
+
+.intro-description {
+    margin: 0;
+
+    color: var(--mid-gray);
+
+    font-size: 0.96rem;
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   Tool Grid
+================================================== */
+
+.tools-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 18px;
+
+    padding-bottom: 72px;
+}
+
+
+/* ==================================================
+   Tool Cards
+================================================== */
+
+.tool-card {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 215px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 28px;
+
+    background: var(--white);
+
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+
+    color: var(--black);
+    text-decoration: none;
+
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.tool-card::after {
+    content: "";
+
+    position: absolute;
+
+    left: 28px;
+    bottom: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: var(--cfe-red);
+
+    transition: width 220ms ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--dark-gray);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.tool-card:hover::after {
+    width: 48px;
+}
+
+
+/* ==================================================
+   Card Header
+================================================== */
+
+.tool-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.tool-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--charcoal);
+    color: var(--white);
+
+    border-radius: 3px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease;
+}
+
+.arrow {
+    color: var(--mid-gray);
+
+    font-size: 1.35rem;
+    line-height: 1;
+
+    transition:
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.tool-card:hover .tool-icon {
+    background: var(--cfe-red);
+}
+
+.tool-card:hover .arrow {
+    color: var(--cfe-red);
+    transform: translateX(4px);
+}
+
+
+/* ==================================================
+   Card Content
+================================================== */
+
+.tool-content {
+    margin-top: 44px;
+}
+
+.tool-content h2 {
+    margin: 0 0 9px;
+
+    font-size: 1.18rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+
+.tool-content p {
+    margin: 0;
+
+    color: var(--mid-gray);
+
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+
+/* ==================================================
+   Footer
+================================================== */
+
+.site-footer {
+    background: var(--white);
+    border-top: 1px solid var(--light-gray);
+}
+
+.footer-content {
+    min-height: 66px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--mid-gray);
+
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+}
+
+.footer-dot {
+    width: 3px;
+    height: 3px;
+
+    background: var(--cfe-red);
+    border-radius: 50%;
+}
+
+
+/* ==================================================
+   Accessibility
+================================================== */
+
+.tool-card:focus-visible {
+    outline: 2px solid var(--cfe-red);
+    outline-offset: 3px;
+}
+
+
+/* ==================================================
+   Mobile
+================================================== */
+
+@media (max-width: 600px) {
+
+    .header-content {
+        min-height: 68px;
+    }
+
+    .brand {
+        gap: 14px;
+    }
+
+    .brand-mark {
+        min-width: 66px;
+        height: 38px;
+    }
+
+    .brand-divider {
+        height: 24px;
+    }
+
+    .intro {
+        padding: 52px 0 28px;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+        padding-bottom: 52px;
+    }
+
+    .tool-card {
+        min-height: 195px;
+        padding: 24px;
+    }
+
+    .tool-card::after {
+        left: 24px;
+    }
+
+    .footer-content {
+        flex-wrap: wrap;
+    }
+}
