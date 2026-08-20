@@ -1,6 +1,7 @@
 /* ==================================================
    CFE Tools Hub
-   Grayscale-first design with restrained red accents
+   Light + Dark mode
+   Dark mode is the default.
 ================================================== */
 
 :root {
@@ -16,6 +17,49 @@
     --white: #ffffff;
 
     --page-width: 1200px;
+
+    /* Theme colors - dark by default */
+    --page-bg: #111111;
+    --surface: #181818;
+    --surface-hover: #1d1d1d;
+    --header-bg: #151515;
+    --footer-bg: #151515;
+
+    --text-primary: #f2f2f2;
+    --text-secondary: #9b9b9b;
+
+    --border: #303030;
+    --border-hover: #6b6b6b;
+
+    --icon-bg: #2a2a2a;
+    --icon-text: #f4f4f4;
+
+    --shadow: rgba(0, 0, 0, 0.28);
+}
+
+
+/* ==================================================
+   Light Theme
+   Existing light-mode styling is preserved.
+================================================== */
+
+html[data-theme="light"] {
+    --page-bg: var(--off-white);
+    --surface: var(--white);
+    --surface-hover: var(--white);
+    --header-bg: var(--white);
+    --footer-bg: var(--white);
+
+    --text-primary: var(--black);
+    --text-secondary: var(--mid-gray);
+
+    --border: var(--light-gray);
+    --border-hover: var(--dark-gray);
+
+    --icon-bg: var(--charcoal);
+    --icon-text: var(--white);
+
+    --shadow: rgba(0, 0, 0, 0.05);
 }
 
 
@@ -29,6 +73,11 @@
 
 html {
     scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
 }
 
 body {
@@ -41,8 +90,12 @@ body {
         Helvetica,
         sans-serif;
 
-    background: var(--off-white);
-    color: var(--black);
+    background: var(--page-bg);
+    color: var(--text-primary);
+
+    transition:
+        background-color 180ms ease,
+        color 180ms ease;
 }
 
 .container {
@@ -56,8 +109,12 @@ body {
 ================================================== */
 
 .site-header {
-    background: var(--white);
-    border-bottom: 1px solid var(--light-gray);
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border);
+
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease;
 }
 
 .header-content {
@@ -65,7 +122,87 @@ body {
 
     display: flex;
     align-items: center;
+    gap: 20px;
 }
+
+
+/* ==================================================
+   Theme Toggle
+================================================== */
+
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    background: transparent;
+    color: var(--text-primary);
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--cfe-red);
+    color: var(--cfe-red);
+    transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--cfe-red);
+    outline-offset: 3px;
+}
+
+.theme-icon {
+    grid-area: 1 / 1;
+
+    font-size: 1.1rem;
+    line-height: 1;
+
+    transition:
+        opacity 160ms ease,
+        transform 220ms ease;
+}
+
+/* Dark mode shows the sun because clicking it switches to light mode. */
+.sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.moon-icon {
+    opacity: 0;
+    transform: rotate(-20deg) scale(0.7);
+}
+
+html[data-theme="light"] .sun-icon {
+    opacity: 0;
+    transform: rotate(20deg) scale(0.7);
+}
+
+html[data-theme="light"] .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+
+/* ==================================================
+   Branding
+================================================== */
 
 .brand {
     display: flex;
@@ -83,14 +220,18 @@ body {
 
     padding: 0 12px;
 
-    background: var(--charcoal);
-    color: var(--white);
+    background: var(--icon-bg);
+    color: var(--icon-text);
 
     border-radius: 3px;
 
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.08em;
+
+    transition:
+        background-color 180ms ease,
+        color 180ms ease;
 }
 
 .cfe-logo {
@@ -103,15 +244,19 @@ body {
     width: 1px;
     height: 28px;
 
-    background: var(--light-gray);
+    background: var(--border);
+
+    transition: background-color 180ms ease;
 }
 
 .site-name {
-    color: var(--mid-gray);
+    color: var(--text-secondary);
 
     font-size: 0.76rem;
     font-weight: 600;
     letter-spacing: 0.28em;
+
+    transition: color 180ms ease;
 }
 
 
@@ -126,28 +271,36 @@ body {
 .eyebrow {
     margin: 0 0 12px;
 
-    color: var(--mid-gray);
+    color: var(--text-secondary);
 
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.18em;
+
+    transition: color 180ms ease;
 }
 
 .intro h1 {
     margin: 0 0 10px;
 
+    color: var(--text-primary);
+
     font-size: clamp(2.1rem, 4vw, 3.1rem);
     font-weight: 400;
     letter-spacing: -0.035em;
+
+    transition: color 180ms ease;
 }
 
 .intro-description {
     margin: 0;
 
-    color: var(--mid-gray);
+    color: var(--text-secondary);
 
     font-size: 0.96rem;
     line-height: 1.6;
+
+    transition: color 180ms ease;
 }
 
 
@@ -183,15 +336,17 @@ body {
 
     padding: 28px;
 
-    background: var(--white);
+    background: var(--surface);
 
-    border: 1px solid var(--light-gray);
+    border: 1px solid var(--border);
     border-radius: 4px;
 
-    color: var(--black);
+    color: var(--text-primary);
     text-decoration: none;
 
     transition:
+        background-color 180ms ease,
+        color 180ms ease,
         transform 180ms ease,
         border-color 180ms ease,
         box-shadow 180ms ease;
@@ -216,10 +371,11 @@ body {
 .tool-card:hover {
     transform: translateY(-2px);
 
-    border-color: var(--dark-gray);
+    background: var(--surface-hover);
+    border-color: var(--border-hover);
 
     box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.05);
+        0 8px 24px var(--shadow);
 }
 
 .tool-card:hover::after {
@@ -245,8 +401,8 @@ body {
     align-items: center;
     justify-content: center;
 
-    background: var(--charcoal);
-    color: var(--white);
+    background: var(--icon-bg);
+    color: var(--icon-text);
 
     border-radius: 3px;
 
@@ -258,12 +414,8 @@ body {
         color 180ms ease;
 }
 
-.color-white {
-   fill: White;
-}
-
 .arrow {
-    color: var(--mid-gray);
+    color: var(--text-secondary);
 
     font-size: 1.35rem;
     line-height: 1;
@@ -275,6 +427,7 @@ body {
 
 .tool-card:hover .tool-icon {
     background: var(--cfe-red);
+    color: var(--white);
 }
 
 .tool-card:hover .arrow {
@@ -294,18 +447,24 @@ body {
 .tool-content h2 {
     margin: 0 0 9px;
 
+    color: var(--text-primary);
+
     font-size: 1.18rem;
     font-weight: 600;
     letter-spacing: -0.015em;
+
+    transition: color 180ms ease;
 }
 
 .tool-content p {
     margin: 0;
 
-    color: var(--mid-gray);
+    color: var(--text-secondary);
 
     font-size: 0.9rem;
     line-height: 1.55;
+
+    transition: color 180ms ease;
 }
 
 
@@ -314,8 +473,12 @@ body {
 ================================================== */
 
 .site-footer {
-    background: var(--white);
-    border-top: 1px solid var(--light-gray);
+    background: var(--footer-bg);
+    border-top: 1px solid var(--border);
+
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease;
 }
 
 .footer-content {
@@ -325,10 +488,12 @@ body {
     align-items: center;
     gap: 10px;
 
-    color: var(--mid-gray);
+    color: var(--text-secondary);
 
     font-size: 0.75rem;
     letter-spacing: 0.04em;
+
+    transition: color 180ms ease;
 }
 
 .footer-dot {
@@ -358,6 +523,14 @@ body {
 
     .header-content {
         min-height: 68px;
+        gap: 14px;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+
+        flex-basis: 36px;
     }
 
     .brand {

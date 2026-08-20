@@ -7,6 +7,14 @@
     <title>CFE Tools</title>
 
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        const savedTheme = localStorage.getItem("cfe-theme");
+
+        if (savedTheme === "light" || savedTheme === "dark") {
+            document.documentElement.setAttribute("data-theme", savedTheme);
+        }
+    </script>
 </head>
 
 <body>
@@ -14,8 +22,18 @@
     <header class="site-header">
         <div class="container header-content">
 
+            <button
+                class="theme-toggle"
+                id="theme-toggle"
+                type="button"
+                aria-label="Switch to light mode"
+                title="Switch theme"
+            >
+                <span class="theme-icon sun-icon" aria-hidden="true">☀</span>
+                <span class="theme-icon moon-icon" aria-hidden="true">☾</span>
+            </button>
+
             <div class="brand">
-                <!-- Replace this text mark with your CFE logo when ready -->
                 <img src="assets/Critical-Facilities-Energy_Logo.svg" alt="CFE" class="cfe-logo">
                 
                 <span class="brand-divider"></span>
@@ -42,7 +60,7 @@
 
             <a href="kairos/" class="tool-card">
                 <div class="tool-card-top">
-                    <div class="tool-icon"><img src="assets/Kairos/kairosw.svg" alt="Kairos" class="color-white"></div>
+                    <div class="tool-icon"><img src="assets/Kairos/kairos-w.svg" alt="Kairos"></div>
                     <span class="arrow" aria-hidden="true">→</span>
                 </div>
 
@@ -112,5 +130,6 @@
         </div>
     </footer>
 
+    <script src="js/script.js"></script>
 </body>
 </html>
