@@ -235,9 +235,17 @@ html[data-theme="light"] .moon-icon {
 }
 
 .cfe-logo {
-    display: block;
+	display: block;
     width: 90px;
     height: auto;
+    filter: invert(1);
+}
+
+html[data-theme="light"] .cfe-logo {
+	display: block;
+    width: 90px;
+    height: auto;
+    filter: none;
 }
 
 .brand-divider {
