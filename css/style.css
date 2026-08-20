@@ -258,6 +258,10 @@ body {
         color 180ms ease;
 }
 
+.color-white {
+   fill: White;
+}
+
 .arrow {
     color: var(--mid-gray);
 
