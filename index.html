@@ -80,15 +80,21 @@
                 </div>
 
                 <div class="tool-content">
-                    <h2>Qualifications</h2>
+                    <h2>PLACEHOLDER</h2>
                     <p>
-                        Employee training and qualification tracking. PLACEHOLDER
+                        PLACEHOLDER
                     </p>
                 </div>
             </a>
 
 
-            <a href="#" class="tool-card">
+            <button
+                class="tool-card tool-card-button reports-toggle"
+                id="reports-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="reports-dropdown"
+            >
                 <div class="tool-card-top">
                     <div class="tool-icon">R</div>
                     <span class="arrow" aria-hidden="true">→</span>
@@ -97,10 +103,31 @@
                 <div class="tool-content">
                     <h2>Reports</h2>
                     <p>
-                        Service, field, and commissioning report utilities. PLACEHOLDER
+                        Service, field, and commissioning report utilities.
                     </p>
                 </div>
-            </a>
+            </button>
+
+
+            <div class="reports-dropdown" id="reports-dropdown" hidden>
+                <div class="reports-subgrid">
+
+                    <a href="https://cfetools.com/reports/hyper/" class="tool-card report-card">
+                        <div class="tool-card-top">
+                            <div class="tool-icon"><img src="assets/hyper-smallw.svg" style="padding: 5px;" alt="Hyper"></div>
+                            <span class="arrow" aria-hidden="true">→</span>
+                        </div>
+
+                        <div class="tool-content">
+                            <h2>Hyper Daily Report</h2>
+                            <p>
+                                Hyper service daily field reporting.
+                            </p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
 
 
             <a href="#" class="tool-card">

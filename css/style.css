@@ -576,3 +576,44 @@ html[data-theme="light"] .cfe-logo {
         flex-wrap: wrap;
     }
 }
+
+/* ==================================================
+   Expandable Reports
+================================================== */
+
+.tool-card-button {
+    width: 100%;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.reports-toggle.is-open {
+    border-color: var(--cfe-red);
+}
+
+.reports-toggle.is-open .arrow {
+    color: var(--cfe-red);
+    transform: rotate(90deg);
+}
+
+.reports-dropdown {
+    grid-column: 1 / -1;
+    padding: 4px 0 8px;
+}
+
+.reports-subgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 280px));
+    gap: 18px;
+}
+
+.report-card {
+    min-height: 190px;
+}
+
+@media (max-width: 600px) {
+    .reports-subgrid {
+        grid-template-columns: 1fr;
+    }
+}

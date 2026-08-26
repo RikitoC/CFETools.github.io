@@ -22,3 +22,16 @@ themeToggle.addEventListener("click", () => {
 });
 
 updateToggleLabel();
+
+const reportsToggle = document.getElementById("reports-toggle");
+const reportsDropdown = document.getElementById("reports-dropdown");
+
+if (reportsToggle && reportsDropdown) {
+    reportsToggle.addEventListener("click", () => {
+        const isOpen = reportsToggle.getAttribute("aria-expanded") === "true";
+
+        reportsToggle.setAttribute("aria-expanded", String(!isOpen));
+        reportsToggle.classList.toggle("is-open", !isOpen);
+        reportsDropdown.hidden = isOpen;
+    });
+}
