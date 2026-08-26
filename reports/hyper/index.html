@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Work Report</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="toolbar" aria-label="Form actions">
+    <button type="button" class="button button-secondary" id="resetForm">Clear Form</button>
+    <button type="button" class="button button-primary" id="printForm">Print / Save PDF</button>
+  </div>
+
+  <main class="report" id="report">
+    <header class="report-header">
+      <div class="company-name">Hyper Solutions, Inc.</div>
+      <h1>DAILY WORK REPORT</h1>
+      <p class="subtitle">Submit same-day for every site visited. One report per site per day.</p>
+    </header>
+
+    <form id="dailyWorkReport" autocomplete="off">
+      <section class="form-section">
+        <h2>JOB INFORMATION</h2>
+        <div class="info-grid">
+          <label class="info-label" for="siteCustomer">Site / Customer</label>
+          <input id="siteCustomer" name="siteCustomer" type="text">
+
+          <label class="info-label" for="reportDate">Date</label>
+          <input id="reportDate" name="reportDate" type="date">
+
+          <label class="info-label" for="serviceOrder">Service Order #</label>
+          <input id="serviceOrder" name="serviceOrder" type="text">
+
+          <label class="info-label" for="technicianName">Technician Name</label>
+          <input id="technicianName" name="technicianName" type="text">
+
+          <label class="info-label" for="arrivalTime">Arrival Time</label>
+          <input id="arrivalTime" name="arrivalTime" type="time">
+
+          <label class="info-label" for="departureTime">Departure Time</label>
+          <input id="departureTime" name="departureTime" type="time">
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>JOB STATUS</h2>
+        <div class="check-row">
+          <label><input type="checkbox" name="statusComplete"> <span>Complete</span></label>
+          <label><input type="checkbox" name="statusInProgress"> <span>In Progress</span></label>
+          <label><input type="checkbox" name="statusBlocked"> <span>Blocked / Escalation</span></label>
+        </div>
+        <p class="helper">If Blocked/Escalation is checked, notify your coordinator the same day in addition to noting it below.</p>
+      </section>
+
+      <section class="form-section">
+        <h2>SCOPE OF WORK PERFORMED</h2>
+        <p class="helper">Describe what was actually done today in plain language.</p>
+        <textarea class="expandable large-field" name="scopeOfWork" rows="4" aria-label="Scope of work performed"></textarea>
+      </section>
+
+      <section class="form-section">
+        <h2>EQUIPMENT WORKED ON</h2>
+        <p class="helper">List each unit's serial number so parts, warranty, and history stay tied to the correct equipment.</p>
+        <div class="table-wrap">
+          <table class="editable-table" id="equipmentTable">
+            <thead>
+              <tr>
+                <th>Equipment / Unit Description</th>
+                <th>Serial Number</th>
+                <th>Notes (location, nameplate ID, etc.)</th>
+                <th class="row-actions no-print" aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Equipment or unit description"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Serial number"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Equipment notes"></textarea></td>
+                <td class="row-actions no-print"><button type="button" class="icon-button remove-row" title="Remove row" aria-label="Remove equipment row">×</button></td>
+              </tr>
+              <tr>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Equipment or unit description"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Serial number"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Equipment notes"></textarea></td>
+                <td class="row-actions no-print"><button type="button" class="icon-button remove-row" title="Remove row" aria-label="Remove equipment row">×</button></td>
+              </tr>
+              <tr>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Equipment or unit description"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Serial number"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Equipment notes"></textarea></td>
+                <td class="row-actions no-print"><button type="button" class="icon-button remove-row" title="Remove row" aria-label="Remove equipment row">×</button></td>
+              </tr>
+              <tr>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Equipment or unit description"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Serial number"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Equipment notes"></textarea></td>
+                <td class="row-actions no-print"><button type="button" class="icon-button remove-row" title="Remove row" aria-label="Remove equipment row">×</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="add-row no-print" data-table="equipmentTable">+ Add Equipment Row</button>
+      </section>
+
+      <section class="form-section">
+        <h2>BLOCKED / DELAYED REASON (IF APPLICABLE)</h2>
+        <p class="helper">Leave blank if not applicable.</p>
+        <textarea class="expandable large-field" name="blockedReason" rows="4" aria-label="Blocked or delayed reason"></textarea>
+      </section>
+
+      <section class="form-section">
+        <h2>PARTS / MATERIALS (IF APPLICABLE)</h2>
+        <p class="helper">Leave blank if not applicable.</p>
+        <div class="table-wrap">
+          <table class="editable-table parts-table" id="partsTable">
+            <thead>
+              <tr>
+                <th>Part / Material</th>
+                <th>Part Number</th>
+                <th>Qty</th>
+                <th>Used / Needed (note which)</th>
+                <th class="row-actions no-print" aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Part or material"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Part number"></textarea></td>
+                <td><textarea class="expandable table-field short-field" rows="1" aria-label="Quantity"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Used or needed"></textarea></td>
+                <td class="row-actions no-print"><button type="button" class="icon-button remove-row" title="Remove row" aria-label="Remove parts row">×</button></td>
+              </tr>
+              <tr>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Part or material"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Part number"></textarea></td>
+                <td><textarea class="expandable table-field short-field" rows="1" aria-label="Quantity"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Used or needed"></textarea></td>
+                <td class="row-actions no-print"><button type="button" class="icon-button remove-row" title="Remove row" aria-label="Remove parts row">×</button></td>
+              </tr>
+              <tr>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Part or material"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Part number"></textarea></td>
+                <td><textarea class="expandable table-field short-field" rows="1" aria-label="Quantity"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Used or needed"></textarea></td>
+                <td class="row-actions no-print"><button type="button" class="icon-button remove-row" title="Remove row" aria-label="Remove parts row">×</button></td>
+              </tr>
+              <tr>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Part or material"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Part number"></textarea></td>
+                <td><textarea class="expandable table-field short-field" rows="1" aria-label="Quantity"></textarea></td>
+                <td><textarea class="expandable table-field" rows="1" aria-label="Used or needed"></textarea></td>
+                <td class="row-actions no-print"><button type="button" class="icon-button remove-row" title="Remove row" aria-label="Remove parts row">×</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="add-row no-print" data-table="partsTable">+ Add Parts / Materials Row</button>
+      </section>
+
+      <div class="print-page-break" aria-hidden="true"></div>
+
+      <section class="form-section second-page-section">
+        <h2>SAFETY &amp; COMPLIANCE NOTES</h2>
+        <p class="helper">LOTO performed, PPE issues, NETA findings, or anything a customer safety team would ask about.</p>
+        <textarea class="expandable large-field" name="safetyNotes" rows="5" aria-label="Safety and compliance notes"></textarea>
+      </section>
+
+      <section class="form-section">
+        <h2>PHOTOS ATTACHED</h2>
+        <div class="check-row">
+          <label><input type="checkbox" name="photosYes"> <span>Yes</span></label>
+          <label><input type="checkbox" name="photosNo"> <span>No</span></label>
+          <label><input type="checkbox" name="photosNA"> <span>N/A</span></label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>FOLLOW-UP NEEDED FOR COORDINATOR / PM</h2>
+        <p class="helper">Flag anything requiring action from the office — scheduling, parts order, customer callback, etc.</p>
+        <textarea class="expandable large-field" name="followUp" rows="5" aria-label="Follow-up needed for coordinator or project manager"></textarea>
+      </section>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

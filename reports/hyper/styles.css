@@ -1,0 +1,508 @@
+:root {
+  --ink: #20252b;
+  --navy: #203c67;
+  --navy-soft: #dce7f2;
+  --line: #aeb6bf;
+  --paper: #ffffff;
+  --page-bg: #e9edf1;
+  --muted: #666d75;
+  --danger: #8d2a2a;
+  --focus: rgba(32, 60, 103, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+html { min-height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.35;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(233, 237, 241, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #d4d9de;
+}
+
+.button,
+.add-row,
+.icon-button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.button {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 9px 15px;
+  font-weight: 700;
+}
+
+.button-primary {
+  background: var(--navy);
+  color: white;
+}
+
+.button-secondary {
+  background: white;
+  color: var(--ink);
+  border-color: #bcc4cc;
+}
+
+.report {
+  width: min(8.5in, calc(100% - 28px));
+  margin: 24px auto 48px;
+  padding: 0.6in 0.62in 0.65in;
+  background: var(--paper);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+}
+
+.report-header {
+  position: relative;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.company-name {
+  position: absolute;
+  right: 0;
+  top: -0.22in;
+  color: #777;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+}
+
+h1,
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--navy);
+}
+
+h1 {
+  margin: 0 0 2px;
+  font-size: clamp(1.65rem, 5vw, 2.15rem);
+  letter-spacing: 0.01em;
+}
+
+.subtitle,
+.helper {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.form-section {
+  margin: 0 0 22px;
+  break-inside: avoid;
+}
+
+.form-section h2 {
+  margin: 0 0 8px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--navy);
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.helper {
+  margin: 0 0 9px;
+  font-size: 0.76rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.65fr 1fr 1.65fr;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.info-grid > * {
+  min-width: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px;
+  background: var(--navy-soft);
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+textarea {
+  width: 100%;
+  border: 1px solid #aeb6bf;
+  border-radius: 0;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.info-grid input {
+  min-height: 38px;
+  border: 0;
+  padding: 7px 9px;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+textarea {
+  display: block;
+  resize: none;
+  overflow: hidden;
+  padding: 8px;
+  line-height: 1.32;
+}
+
+.large-field {
+  min-height: 68px;
+}
+
+.check-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+  align-items: center;
+  min-height: 32px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.89rem;
+}
+
+.check-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--navy);
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.editable-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.editable-table th,
+.editable-table td {
+  border: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.editable-table th {
+  padding: 7px 8px;
+  background: var(--navy-soft);
+  color: var(--navy);
+  text-align: left;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.editable-table td {
+  padding: 0;
+  background: #fff;
+}
+
+.editable-table th:nth-child(1) { width: 34%; }
+.editable-table th:nth-child(2) { width: 29%; }
+.editable-table th:nth-child(3) { width: 37%; }
+
+.parts-table th:nth-child(1) { width: 33%; }
+.parts-table th:nth-child(2) { width: 19%; }
+.parts-table th:nth-child(3) { width: 12%; }
+.parts-table th:nth-child(4) { width: 36%; }
+
+.editable-table .table-field {
+  min-height: 31px;
+  border: 0;
+  padding: 6px 7px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.84rem;
+}
+
+.editable-table .row-actions {
+  width: 34px !important;
+  min-width: 34px;
+  text-align: center;
+  vertical-align: middle;
+  background: #f7f8f9;
+}
+
+.icon-button {
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--danger);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.icon-button:hover { background: #f4e5e5; }
+
+.add-row {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: 1px solid #aeb6bf;
+  border-radius: 5px;
+  background: #fff;
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.add-row:hover { background: #f3f6f9; }
+
+.print-page-break {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .report {
+    width: 100%;
+    margin: 0;
+    padding: 24px 16px 40px;
+    box-shadow: none;
+  }
+
+  .toolbar {
+    justify-content: stretch;
+  }
+
+  .toolbar .button {
+    flex: 1;
+  }
+
+  .company-name {
+    position: static;
+    margin-bottom: 12px;
+    text-align: right;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr 1.5fr;
+  }
+
+  .table-wrap {
+    overflow-x: visible;
+  }
+
+  .editable-table {
+    min-width: 650px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+}
+
+@page {
+  size: Letter portrait;
+  margin: 0.45in 0.48in 0.48in;
+}
+
+@media print {
+  :root {
+    --navy: #203c67;
+    --navy-soft: #dce7f2;
+    --line: #9fa8b1;
+  }
+
+  html,
+  body {
+    background: white;
+  }
+
+  body {
+    font-size: 10pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .toolbar,
+  .no-print {
+    display: none !important;
+  }
+
+  .report {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .report-header {
+    margin-bottom: 16px;
+  }
+
+  .company-name {
+    top: 0;
+    font-size: 8pt;
+  }
+
+  h1 {
+    font-size: 20pt;
+  }
+
+  .subtitle {
+    font-size: 8.5pt;
+  }
+
+  .form-section {
+    margin-bottom: 14px;
+  }
+
+  .form-section h2 {
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom-width: 1.5pt;
+    font-size: 11pt;
+  }
+
+  .helper {
+    margin-bottom: 5px;
+    font-size: 8pt;
+  }
+
+  .info-label,
+  .editable-table th {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .info-label {
+    min-height: 28px;
+    padding: 5px;
+    font-size: 8pt;
+  }
+
+  .info-grid input {
+    min-height: 28px;
+    padding: 4px 6px;
+    font-size: 9pt;
+  }
+
+  input,
+  textarea {
+    color: #000;
+  }
+
+  .large-field {
+    min-height: 52px;
+  }
+
+  textarea {
+    padding: 5px;
+    font-size: 9pt;
+  }
+
+  .check-row {
+    gap: 12px 18px;
+    min-height: 24px;
+    font-size: 9pt;
+  }
+
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 10pt;
+    height: 10pt;
+    border: 0.8pt solid #444;
+    border-radius: 0;
+    background: white;
+    position: relative;
+  }
+
+  input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    left: 0.5pt;
+    top: -3pt;
+    font-size: 12pt;
+    line-height: 1;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+
+  .editable-table {
+    min-width: 0;
+    font-size: 8.5pt;
+  }
+
+  .editable-table th {
+    padding: 4px 5px;
+    font-size: 7.5pt;
+  }
+
+  .editable-table .table-field {
+    min-height: 22px;
+    padding: 4px 5px;
+    font-size: 8pt;
+  }
+
+  .editable-table tr {
+    break-inside: avoid;
+  }
+
+  .editable-table th:nth-child(1) { width: 34%; }
+  .editable-table th:nth-child(2) { width: 29%; }
+  .editable-table th:nth-child(3) { width: 37%; }
+
+  .parts-table th:nth-child(1) { width: 33%; }
+  .parts-table th:nth-child(2) { width: 19%; }
+  .parts-table th:nth-child(3) { width: 12%; }
+  .parts-table th:nth-child(4) { width: 36%; }
+
+  .print-page-break {
+    display: block;
+    break-before: page;
+  }
+
+  .second-page-section {
+    padding-top: 0.12in;
+  }
+}
