@@ -422,6 +422,13 @@ html[data-theme="light"] .cfe-logo {
         color 180ms ease;
 }
 
+.tool-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+}
+
 .arrow {
     color: var(--text-secondary);
 
