@@ -89,11 +89,12 @@
 
 
             <button
-                class="tool-card tool-card-button reports-toggle"
+                class="tool-card tool-card-button tool-expander"
                 id="reports-toggle"
                 type="button"
+                data-panel="reports-panel"
                 aria-expanded="false"
-                aria-controls="reports-dropdown"
+                aria-controls="reports-panel"
             >
                 <div class="tool-card-top">
                     <div class="tool-icon">R</div>
@@ -108,28 +109,6 @@
                 </div>
             </button>
 
-
-            <div class="reports-dropdown" id="reports-dropdown" hidden>
-                <div class="reports-subgrid">
-
-                    <a href="https://cfetools.com/reports/hyper/" class="tool-card report-card">
-                        <div class="tool-card-top">
-                            <div class="tool-icon"><img src="assets/hyper-smallw.svg" style="padding: 5px;" alt="Hyper"></div>
-                            <span class="arrow" aria-hidden="true">→</span>
-                        </div>
-
-                        <div class="tool-content">
-                            <h2>Hyper Daily Report</h2>
-                            <p>
-                                Hyper service daily field reporting.
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-
             <a href="#" class="tool-card">
                 <div class="tool-card-top">
                     <div class="tool-icon">X</div>
@@ -143,6 +122,29 @@
                     </p>
                 </div>
             </a>
+			
+			
+			<div class="tool-panel" id="reports-panel" aria-hidden="true" hidden>
+                <div class="tool-panel-inner">
+                    <div class="reports-subgrid">
+
+                        <a href="https://cfetools.com/reports/hyper/" class="tool-card report-card">
+                            <div class="tool-card-top">
+                                <div class="tool-icon"><img src="assets/hyper-smallw.svg" style="padding: 5px;" alt="Hyper"></div>
+                                <span class="arrow" aria-hidden="true">→</span>
+                            </div>
+
+                            <div class="tool-content">
+                                <h2>Hyper Reports</h2>
+                                <p>
+                                    Hyper service daily field reporting.
+                                </p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
 
         </section>
 
