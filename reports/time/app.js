@@ -276,11 +276,34 @@
       const rows = [...group];
       while (rows.length < 10) rows.push({ technicianName: "", timeIn: "", timeOut: "", signatureKey: null });
       return `<section class="print-sheet">
-        <div class="print-title-row"><span></span><h1>Technician Attendance Sheet</h1><span>Page ${pageIndex + 1} of ${groups.length}</span></div>
-        <div class="print-meta"><strong>Site</strong><span>${escapeHtml(sheet.site)}</span><strong>Date</strong><span>${escapeHtml(formatDate(sheet.workDate))}</span></div>
-        <table class="print-table"><thead><tr><th>Technician Name</th><th>Time In</th><th>Time Out</th><th>Tech Signature</th></tr></thead><tbody>${rows.map((entry) => `<tr><td>${escapeHtml(entry.technicianName)}</td><td>${escapeHtml(formatTime(entry.timeIn))}</td><td>${escapeHtml(formatTime(entry.timeOut))}</td><td>${entry.signatureKey ? `<img src="${escapeHtml(signatureUrl(entry.signatureKey))}" alt="">` : ""}</td></tr>`).join("")}</tbody></table>
-        <div class="print-lead-meta"><strong>Lead Tech</strong><span>${escapeHtml(sheet.leadTech)}</span><strong>Date</strong><span>${escapeHtml(formatDate(sheet.leadDate))}</span></div>
-        <div class="print-lead-signature"><strong>Signature</strong>${sheet.leadSignatureKey ? `<img src="${escapeHtml(signatureUrl(sheet.leadSignatureKey))}" alt="">` : ""}</div>
+        <header class="report-header">
+          <img class="report-logo" src="./CFEBlack.svg" alt="Critical Facilities Energy">
+          <div class="report-title"><span>Field Operations</span><h1>Technician Attendance Report</h1></div>
+          <div class="report-document"><span>Attendance Record</span><strong>${escapeHtml(formatDate(sheet.workDate))}</strong></div>
+        </header>
+        <div class="report-accent"></div>
+        <section class="report-summary">
+          <div class="site-summary"><span>Site</span><strong>${escapeHtml(sheet.site || "—")}</strong></div>
+          <div><span>Work date</span><strong>${escapeHtml(formatDate(sheet.workDate) || "—")}</strong></div>
+          <div><span>Page</span><strong>${pageIndex + 1} of ${groups.length}</strong></div>
+        </section>
+        <div class="roster-title"><div><span></span><h2>Technician Roster</h2></div><p>Arrival, departure, and signature record</p></div>
+        <div class="roster">
+          <div class="roster-header"><span>No.</span><span>Technician</span><span>Recorded time</span><span>Signature</span></div>
+          ${rows.map((entry, rowIndex) => `<div class="roster-row ${meaningfulEntry(entry) ? "populated" : "empty"}">
+            <span class="row-number">${String(pageIndex * 10 + rowIndex + 1).padStart(2, "0")}</span>
+            <strong class="row-name">${escapeHtml(entry.technicianName)}</strong>
+            <div class="row-times"><span><small>IN</small>${escapeHtml(formatTime(entry.timeIn) || "—")}</span><span><small>OUT</small>${escapeHtml(formatTime(entry.timeOut) || "—")}</span></div>
+            <div class="row-signature">${entry.signatureKey ? `<img src="${escapeHtml(signatureUrl(entry.signatureKey))}" alt="">` : ""}</div>
+          </div>`).join("")}
+        </div>
+        <section class="approval-panel">
+          <div class="approval-label"><span>Approval</span><strong>Lead Technician</strong></div>
+          <div class="approval-name"><span>Lead technician</span><strong>${escapeHtml(sheet.leadTech || "—")}</strong></div>
+          <div class="approval-date"><span>Date</span><strong>${escapeHtml(formatDate(sheet.leadDate) || "—")}</strong></div>
+          <div class="approval-signature"><span>Signature</span>${sheet.leadSignatureKey ? `<img src="${escapeHtml(signatureUrl(sheet.leadSignatureKey))}" alt="">` : ""}</div>
+        </section>
+        <footer class="report-footer"><span>Critical Facilities Energy</span><span>Technician Attendance</span></footer>
       </section>`;
     }).join("");
   }

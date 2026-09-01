@@ -1,0 +1,328 @@
+@page {
+  size: letter landscape;
+  margin: 0.36in;
+}
+
+@media print {
+  html,
+  body {
+    width: 100%;
+    min-height: 0;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color: #17181a !important;
+    color-scheme: light;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .app-shell,
+  .signature-dialog {
+    display: none !important;
+  }
+
+  .print-root {
+    display: block !important;
+    width: 100%;
+  }
+
+  .print-sheet {
+    display: flex;
+    flex-direction: column;
+    width: 10.08in;
+    height: 7.66in;
+    margin: 0.06in auto 0;
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+    background: #ffffff;
+    color: #17181a;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  }
+
+  .print-sheet:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .report-header {
+    display: grid;
+    grid-template-columns: 1.42in 1fr 1.72in;
+    align-items: center;
+    min-height: 0.7in;
+    padding: 0 0.05in;
+  }
+
+  .report-logo {
+    width: 1.2in;
+    height: 0.64in;
+    object-fit: contain;
+  }
+
+  .report-title {
+    padding-left: 0.18in;
+    border-left: 1px solid #d7d9dc;
+  }
+
+  .report-title span,
+  .report-document span,
+  .report-summary span,
+  .approval-panel span {
+    display: block;
+    color: #686d73;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .report-title h1 {
+    margin: 0.03in 0 0;
+    color: #17181a;
+    font-size: 17pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .report-document {
+    text-align: right;
+  }
+
+  .report-document strong {
+    display: block;
+    margin-top: 0.04in;
+    font-size: 10pt;
+  }
+
+  .report-accent {
+    height: 0.055in;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #d9272e 0 18%, #272a2e 18% 100%);
+  }
+
+  .report-summary {
+    display: grid;
+    grid-template-columns: 1fr 1.85in 1.15in;
+    gap: 0.1in;
+    margin-top: 0.14in;
+  }
+
+  .report-summary > div {
+    min-width: 0;
+    padding: 0.1in 0.14in 0.09in;
+    border: 1px solid #dfe1e4;
+    border-radius: 0.08in;
+    background: #f6f7f8;
+  }
+
+  .report-summary strong {
+    display: block;
+    margin-top: 0.025in;
+    overflow: hidden;
+    font-size: 10pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .site-summary {
+    border-left: 0.045in solid #d9272e !important;
+  }
+
+  .roster-title {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin: 0.15in 0 0.06in;
+  }
+
+  .roster-title > div {
+    display: flex;
+    align-items: center;
+    gap: 0.07in;
+  }
+
+  .roster-title > div > span {
+    width: 0.04in;
+    height: 0.16in;
+    border-radius: 999px;
+    background: #d9272e;
+  }
+
+  .roster-title h2 {
+    margin: 0;
+    font-size: 10.5pt;
+    letter-spacing: 0.01em;
+  }
+
+  .roster-title p {
+    margin: 0;
+    color: #747980;
+    font-size: 7.5pt;
+  }
+
+  .roster {
+    overflow: hidden;
+    border: 1px solid #d7d9dc;
+    border-radius: 0.08in;
+  }
+
+  .roster-header,
+  .roster-row {
+    display: grid;
+    grid-template-columns: 0.46in minmax(0, 1fr) 2.18in 2.42in;
+    align-items: center;
+  }
+
+  .roster-header {
+    height: 0.27in;
+    padding: 0 0.11in;
+    background: #272a2e;
+    color: #ffffff;
+    font-size: 7.3pt;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .roster-row {
+    height: 0.405in;
+    padding: 0 0.11in;
+    border-bottom: 1px solid #e5e6e8;
+    background: #ffffff;
+  }
+
+  .roster-row:nth-child(odd) {
+    background: #f8f8f9;
+  }
+
+  .roster-row:last-child {
+    border-bottom: 0;
+  }
+
+  .row-number {
+    color: #a0a4aa;
+    font-family: Consolas, monospace;
+    font-size: 7.5pt;
+    font-weight: 700;
+  }
+
+  .row-name {
+    overflow: hidden;
+    padding-right: 0.1in;
+    font-size: 9.5pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .row-times {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.06in;
+    padding-right: 0.12in;
+  }
+
+  .row-times > span {
+    display: flex;
+    align-items: center;
+    gap: 0.05in;
+    color: #34373b;
+    font-size: 8pt;
+    font-weight: 600;
+  }
+
+  .row-times small {
+    min-width: 0.24in;
+    color: #8b9096;
+    font-size: 6.5pt;
+    font-weight: 800;
+  }
+
+  .roster-row.empty .row-times,
+  .roster-row.empty .row-number {
+    opacity: 0.42;
+  }
+
+  .row-signature {
+    display: flex;
+    align-items: center;
+    height: 0.38in;
+    border-left: 1px solid #e1e3e5;
+    padding-left: 0.15in;
+  }
+
+  .row-signature img {
+    display: block;
+    max-width: 2.02in;
+    width: auto;
+    height: 0.34in;
+    object-fit: contain;
+  }
+
+  .approval-panel {
+    display: grid;
+    grid-template-columns: 1.25in 1fr 1.35in 2.6in;
+    align-items: stretch;
+    min-height: 0.78in;
+    margin-top: 0.16in;
+    overflow: hidden;
+    border: 1px solid #cfd2d5;
+    border-radius: 0.08in;
+  }
+
+  .approval-panel > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    padding: 0.09in 0.13in;
+    border-left: 1px solid #dde0e2;
+  }
+
+  .approval-panel > div:first-child {
+    border-left: 0;
+  }
+
+  .approval-label {
+    background: #272a2e;
+    color: #ffffff;
+  }
+
+  .approval-label span {
+    color: #f2a3a6;
+  }
+
+  .approval-label strong {
+    margin-top: 0.04in;
+    font-size: 9pt;
+  }
+
+  .approval-name strong,
+  .approval-date strong {
+    margin-top: 0.04in;
+    overflow: hidden;
+    font-size: 9pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .approval-signature img {
+    align-self: center;
+    max-width: 2.2in;
+    width: auto;
+    height: 0.48in;
+    object-fit: contain;
+  }
+
+  .report-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding: 0.08in 0.03in 0;
+    border-top: 1px solid #e2e4e6;
+    color: #858a90;
+    font-size: 6.8pt;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}
