@@ -276,50 +276,34 @@
       const rows = [...group];
       while (rows.length < 10) rows.push({ technicianName: "", timeIn: "", timeOut: "", signatureKey: null });
       return `<section class="print-sheet">
-        <header class="report-masthead">
-          <svg class="masthead-art" viewBox="0 0 800 125" preserveAspectRatio="none" aria-hidden="true">
-            <path class="masthead-silver" d="M0 0H800V112C642 58 427 37 249 47C147 52 63 64 0 76Z"></path>
-            <path class="masthead-navy" d="M0 0H800V99C640 45 428 27 250 36C147 41 63 52 0 65Z"></path>
-          </svg>
-          <div class="masthead-label">Field Operations</div>
-          <div class="masthead-brand">
-            <img class="report-logo" src="./CFEBlack.svg" alt="">
-            <span>Critical<br>Facilities<br>Energy</span>
-          </div>
+        <header class="report-header">
+          <img class="report-logo" src="./CFEBlack.svg" alt="Critical Facilities Energy">
+          <div class="report-title"><span>Field Operations</span><h1>Technician Attendance Report</h1></div>
+          <div class="report-document"><span>Attendance Record</span><strong>${escapeHtml(formatDate(sheet.workDate))}</strong></div>
         </header>
-        <section class="report-intro">
-          <div class="report-title">
-            <span>Attendance record</span>
-            <h1>Technician Attendance</h1>
-            <p>Daily field personnel record</p>
-          </div>
-          <div class="report-summary">
-            <div class="site-summary"><span>Site</span><strong>${escapeHtml(sheet.site || "—")}</strong></div>
-            <div><span>Work date</span><strong>${escapeHtml(formatDate(sheet.workDate) || "—")}</strong></div>
-            <div><span>Page</span><strong>${pageIndex + 1} / ${groups.length}</strong></div>
-          </div>
+        <div class="report-accent"></div>
+        <section class="report-summary">
+          <div class="site-summary"><span>Site</span><strong>${escapeHtml(sheet.site || "—")}</strong></div>
+          <div><span>Work date</span><strong>${escapeHtml(formatDate(sheet.workDate) || "—")}</strong></div>
+          <div><span>Page</span><strong>${pageIndex + 1} of ${groups.length}</strong></div>
         </section>
-        <div class="roster-heading"><h2>Technician roster</h2><span>Time and signature verification</span></div>
-        <section class="person-grid">
-          ${rows.map((entry, rowIndex) => `<article class="person-record ${meaningfulEntry(entry) ? "populated" : "empty"}">
-            <span class="person-number">${String(pageIndex * 10 + rowIndex + 1).padStart(2, "0")}</span>
-            <div class="person-content">
-              <strong class="person-name">${escapeHtml(entry.technicianName) || "Technician name"}</strong>
-              <div class="person-times">
-                <span><small>Time in</small><b>${escapeHtml(formatTime(entry.timeIn) || "—")}</b></span>
-                <span><small>Time out</small><b>${escapeHtml(formatTime(entry.timeOut) || "—")}</b></span>
-              </div>
-            </div>
-            <div class="person-signature"><small>Signature</small>${entry.signatureKey ? `<img src="${escapeHtml(signatureUrl(entry.signatureKey))}" alt="">` : `<span></span>`}</div>
-          </article>`).join("")}
-        </section>
+        <div class="roster-title"><div><span></span><h2>Technician Roster</h2></div><p>Arrival, departure, and signature record</p></div>
+        <div class="roster">
+          <div class="roster-header"><span>No.</span><span>Technician</span><span>Recorded time</span><span>Signature</span></div>
+          ${rows.map((entry, rowIndex) => `<div class="roster-row ${meaningfulEntry(entry) ? "populated" : "empty"}">
+            <span class="row-number">${String(pageIndex * 10 + rowIndex + 1).padStart(2, "0")}</span>
+            <strong class="row-name">${escapeHtml(entry.technicianName)}</strong>
+            <div class="row-times"><span><small>IN</small>${escapeHtml(formatTime(entry.timeIn) || "—")}</span><span><small>OUT</small>${escapeHtml(formatTime(entry.timeOut) || "—")}</span></div>
+            <div class="row-signature">${entry.signatureKey ? `<img src="${escapeHtml(signatureUrl(entry.signatureKey))}" alt="">` : ""}</div>
+          </div>`).join("")}
+        </div>
         <section class="approval-panel">
-          <div class="approval-heading"><span>Authorization</span><strong>Lead Technician</strong></div>
+          <div class="approval-label"><span>Approval</span><strong>Lead Technician</strong></div>
           <div class="approval-name"><span>Lead technician</span><strong>${escapeHtml(sheet.leadTech || "—")}</strong></div>
           <div class="approval-date"><span>Date</span><strong>${escapeHtml(formatDate(sheet.leadDate) || "—")}</strong></div>
-          <div class="approval-signature"><span>Signature</span>${sheet.leadSignatureKey ? `<img src="${escapeHtml(signatureUrl(sheet.leadSignatureKey))}" alt="">` : `<i></i>`}</div>
+          <div class="approval-signature"><span>Signature</span>${sheet.leadSignatureKey ? `<img src="${escapeHtml(signatureUrl(sheet.leadSignatureKey))}" alt="">` : ""}</div>
         </section>
-        <footer class="report-footer"><span>Critical Facilities Energy</span><span>Technician Attendance Report</span><span>${pageIndex + 1} of ${groups.length}</span></footer>
+        <footer class="report-footer"><span>Critical Facilities Energy</span><span>Technician Attendance</span></footer>
       </section>`;
     }).join("");
   }
